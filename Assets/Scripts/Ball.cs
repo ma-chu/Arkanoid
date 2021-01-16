@@ -85,7 +85,7 @@ public class Ball : MonoBehaviour
             // Эксцентриситет учитываем только с ближней к мячику стороны
             angle = ballTransform.rotation.eulerAngles.z;
             if (((angle >= 180) && (eccentricity < 0)) ||
-                ((angle >= 0)   && (eccentricity > 0)))
+                ((angle >= 0) && (angle < 180)  && (eccentricity > 0)))
             {
                 //Debug.Log("ECCS works");
                 FrontCollide(eccentricity);

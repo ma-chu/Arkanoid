@@ -201,6 +201,7 @@ public class GameManager : MonoBehaviour
             Transform ballTransform = doubleBallInstance.GetComponent<Transform>();
             ballInstance = Instantiate(ballPrefab, ballTransform.position, ballTransform.rotation * Quaternion.Euler(0f, 0f, Random.Range(-45f, 45f)));
         }
+
         quantityOfBalls++;
         Debug.Log("Ball doubled!");
     }
