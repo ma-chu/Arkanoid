@@ -195,10 +195,14 @@ public class GameManager : MonoBehaviour
         {
             Transform ballTransform = ballInstance.GetComponent<Transform>();
             doubleBallInstance = Instantiate(ballPrefab, ballTransform.position, ballTransform.rotation * Quaternion.Euler(0f, 0f, Random.Range(-45f, 45f)));
-            quantityOfBalls++;
-            Debug.Log("Ball doubled!");
         }
-
+        else if (doubleBallInstance != null)
+        {
+            Transform ballTransform = doubleBallInstance.GetComponent<Transform>();
+            ballInstance = Instantiate(ballPrefab, ballTransform.position, ballTransform.rotation * Quaternion.Euler(0f, 0f, Random.Range(-45f, 45f)));
+        }
+        quantityOfBalls++;
+        Debug.Log("Ball doubled!");
     }
 
     private void RacketWidthChange()
