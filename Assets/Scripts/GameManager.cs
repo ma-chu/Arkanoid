@@ -58,6 +58,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("Level " + level.ToString());
         ballInstance = Instantiate(ballPrefab, new Vector3(9f, 0.75f, 0f), transform.rotation.normalized * Quaternion.Euler(0f, 0f, Random.Range(-45f, 45f)));
         quantityOfBalls = 1;
+        racket.enabled = true;
         InitialBricksSpawn();
     }
     private void InitialBricksSpawn(int raws = 3, int columns = 9)
@@ -102,9 +103,11 @@ public class GameManager : MonoBehaviour
         if (quantityOfBalls < 1)
         {
             Debug.Log("Game Over! You lose! Press R for restart!");
+            EndLevel();
             Time.timeScale = 0;
         }
     }
+
 
     [SerializeField]
     private int bricksLeft;
@@ -123,9 +126,17 @@ public class GameManager : MonoBehaviour
             }
             else
             {
+                EndLevel();
                 StartLevel();
             }
         }
+    }
+
+    private void EndLevel()
+    {
+        if (ballInstance != null) Destroy(ballInstance);
+        if (doubleBallInstance != null) Destroy(doubleBallInstance);
+        racket.enabled = false;
     }
 
     public void BonusCreate(int brickNumber)
